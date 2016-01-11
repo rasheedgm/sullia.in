@@ -11,25 +11,7 @@
   <!-- Include the jQuery Mobile library -->
   <script src="js/jquery.mobile-1.4.5.min.js"></script>
   
-      
-       
-<script>
-$(document).ready(function () {
-    $.ajax({ 
-        type: 'GET', 
-        url: 'http://ihavesolvedit.com/news-jason.php', 
-        data: { get_param: 'value' }, 
-        success: function (data) { 
-         for (var i=0;i<data.length;++i)
-         {
-         alert(data[i].Title);
-         
-         $('news-container').append('<li>' + data[i].Title + '</li>');
-         }
-        }
-    });
-});
-</script>
+ 
       
             
 <script>
