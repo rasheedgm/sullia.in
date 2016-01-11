@@ -6,16 +6,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Include jQuery Mobile stylesheets -->
   <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
+  <link rel="stylesheet" href="css/custom-css.css">
   <!-- Include the jQuery library -->
   <script src="js/jquery-1.11.3.min.js"></script>
   <!-- Include the jQuery Mobile library -->
   <script src="js/jquery.mobile-1.4.5.min.js"></script>
+  <script src="js/responsiveImg.js"></script>
   
- 
+ <script> $("#newsImage").responsiveImg({
+    breakpoints:{
+        "_four":400,
+        "_two":200,
+        "_eight":800
+    }
+});
+</script>
       
             
 <script>
-var xmlhttp = new XMLHttpRequest();
+/*var xmlhttp = new XMLHttpRequest();
 var url = "http://sullia.in/mobile/news-jason.php";
 
 xmlhttp.onreadystatechange=function() {
@@ -33,14 +42,14 @@ function myFunction(response) {
     var listdata="";
     var lnum;
     for(i = 0; i < arr.length; i++) {
-        /*out += "<tr><td>" +
+        out += "<tr><td>" +
         arr[i].Title +
         "</td><td>" +
         arr[i].Body +
         "</td><td>" +
         arr[i].Reporter +
         "</td></tr>";
-        */
+        
         if(i==0)
             {
                 listdata+= "<li class='ui-li-has-thumb  ui-first-child'><a href='"+ arr[i].id + "'class='ui-btn ui-btn-icon-right ui-icon-carat-r'><img src='" + arr[i].Image + "'>        <h2>" + arr[i].Title + "</h2><p>" + arr[i].Body+ "</p></a></li>";
@@ -51,12 +60,65 @@ function myFunction(response) {
         else{
             listdata+= "<li class='ui-li-has-thumb  ui-last-child'><a href='"+ arr[i].id + "'class='ui-btn ui-btn-icon-right ui-icon-carat-r'><img src='" + arr[i].Image + "'>        <h2>" + arr[i].Title + "</h2><p>" + arr[i].Body+ "</p></a></li>";
         }
-        $("#news-container").html(listdata);
+        $("#news-list").html(listdata);
         
     }
     //out += "</table>";
-    //document.getElementById("news-container").innerHTML = out;
+    //document.getElementById("news-list").innerHTML = out;
+}*/
+    
+    /*runs befor home page open*/
+    $(document).on('pagebeforeshow', '#home', function(){
+        var xmlhttp = new XMLHttpRequest();
+var url = "http://sullia.in/mobile/news-jason.php";
+
+xmlhttp.onreadystatechange=function() {
+    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+        myFunction(xmlhttp.responseText);
+    }
 }
+xmlhttp.open("GET", url, true);
+xmlhttp.send();
+
+function myFunction(response) {
+    var data = JSON.parse(response);
+    var i;    
+        
+    
+    searchCallback(data);
+    
+    //click handler to create new page
+    $("#news-list").on("click", "li a", function(){          
+        var thetitle = $(this).find("h2").text();
+        for(i = 0; i < data.length; i++) {
+        if (data[i].Title==thetitle){
+            var newsBody= data[i].Body;
+            var newsImage= data[i].Image;
+        }
+        $("#newsTitle").text(thetitle);
+        $("#newsBody").text(newsBody);
+        $("#newsImage").attr('src',newsImage);
+        $(":mobile-pagecontainer").pagecontainer( "change", "#news-display", { transition: "slide" } );
+        }
+     });
+    
+
+}
+});
+    
+    
+   /* list news items function */
+    function searchCallback(datas) {
+           
+    $("#news-list").empty()
+           $.each(datas, function (index, data) {
+                  $("#news-list").append("<li><a><img src='" + data.Image + "' /><h2>" + data.Title + "</h2>" + "<p>" + data.Body + "</p></a></li>").listview().listview("refresh");
+           });
+}
+
+    
+    
+    
 </script>
       
       
@@ -79,7 +141,7 @@ function myFunction(response) {
     <a href="#nav-panel-home" data-icon="bars" data-iconpos="notext">Menu</a>
   </div>
   <div data-role="main" class="ui-content">
-      <ul data-role="listview" id="news-container">
+      <ul data-role="listview" id="news-list">
           <p>loading data...</p>
       </ul>  
     <div id="asa"></div>
@@ -194,6 +256,41 @@ function myFunction(response) {
       </div>-->
   </div>
 </div> 
+      
+<div data-role="page" id="news-display">
+    <div data-role="panel" data-display="push" id="nav-panel-news-display">
+        <ul data-role="listview">
+            <li data-icon="delete" data-role="divider">Menu</li>
+                <li> <a href="#home" data-icon="home"  data-transition="slidefade"><p>Home</p></a></li>  
+                <li> <a href="#news" data-icon="bars" data-transition="slidefade"><p>News</p></a></li>
+                <li> <a href="#ads" data-icon="star" data-transition="slidefade"><p>Ads</p></a></li>
+                <li> <a href="#about" data-icon="info" data-transition="slidefade"><p>About</p></a></li>
+        </ul>
+    </div><!-- /panel -->   
+  <div  data-role="header" >
+    <h1>SULLIA.IN</h1>      
+    <a href="#home" class="ui-btn-left" data-transition="slide" data-direction="reverse" data-icon="back">Back</a> 
+  </div>
+  <div data-role="main" class="ui-content">
+ <h3 id="newsTitle"></h3>
+ <img src="" id="newsImage" class="ui-grid-b">
+ <p id="newsBody"></p>
+  </div>
+
+  <div data-role="footer" data-position="fixed">
+    <!--<div data-role="navbar">
+        <ul>
+            <li> <a href="#home" data-icon="home"  data-transition="slidefade">Home</a></li>  
+            <li> <a href="#news" data-icon="bars" class="ui-btn-active" data-transition="slidefade">News</a></li>
+            <li> <a href="#ads" data-icon="star" data-transition="slidefade">Ads</a></li>
+            <li> <a href="#about" data-icon="info" data-transition="slidefade">About</a></li>
+            
+        </ul>
+      
+      </div>-->
+  </div>
+</div> 
+
       
 
 
