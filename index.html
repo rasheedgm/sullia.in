@@ -63,42 +63,31 @@ function myFunction(response) {
   </head>
   <body>
  
-<div data-role="page" id="home">
-  <div  data-role="header" >
+<div data-role="page" id="home" class="ui-responsive-panel">
+    <div data-role="panel" data-display="push" id="nav-panel-home">
+        <ul data-role="listview">
+            <li data-icon="delete" data-role="divider">Menu</li>
+                <li> <a href="#home" data-icon="home"  data-transition="slidefade"><p>Home</p></a></li>  
+                <li> <a href="#news" data-icon="bars" data-transition="slidefade"><p>News</p></a></li>
+                <li> <a href="#ads" data-icon="star" data-transition="slidefade"><p>Ads</p></a></li>
+                <li> <a href="#about" data-icon="info" data-transition="slidefade"><p>About</p></a></li>
+        </ul>
+    </div><!-- /panel -->   
+      
+   <div  data-role="header" >
     <h1>SULLIA.IN</h1>
+    <a href="#nav-panel-home" data-icon="bars" data-iconpos="notext">Menu</a>
   </div>
   <div data-role="main" class="ui-content">
       <ul data-role="listview" id="news-container">
-          <li id="li1" class="ui-li-has-thumb ui-first-child">
-              <a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">
-                  <img src="#">
-                  <h2>Head</h2>
-                  <p>text</p>
-              
-              </a>
-          </li>
-          <li  id="li2">
-              <a href="#">
-                  <img src="#">
-                  <h2>Head</h2>
-                  <p>text</p>
-              
-              </a>
-          </li >
-          <li id="li3">
-              <a href="#">
-                  <img src="#">
-                  <h2>Head</h2>
-                  <p>text</p>
-              
-              </a>
-          </li>
+          <p>loading data...</p>
       </ul>  
     <div id="asa"></div>
   </div>
 
   <div data-role="footer" data-position="fixed">
-    <div data-role="navbar">
+      
+    <!--<div data-role="navbar">
         <ul>
             <li> <a href="#home" data-icon="home" class="ui-btn-active" data-transition="slidefade">Home</a></li>  
             <li> <a href="#news" data-icon="bars" data-transition="slidefade">News</a></li>
@@ -107,19 +96,29 @@ function myFunction(response) {
             
         </ul>
       
-      </div>
+      </div>-->
   </div>
 </div> 
 <div data-role="page" id="news">
+    <div data-role="panel" data-display="push" id="nav-panel-news">
+        <ul data-role="listview">
+            <li data-icon="delete" data-role="divider">Menu</li>
+                <li> <a href="#home" data-icon="home"  data-transition="slidefade"><p>Home</p></a></li>  
+                <li> <a href="#news" data-icon="bars" data-transition="slidefade"><p>News</p></a></li>
+                <li> <a href="#ads" data-icon="star" data-transition="slidefade"><p>Ads</p></a></li>
+                <li> <a href="#about" data-icon="info" data-transition="slidefade"><p>About</p></a></li>
+        </ul>
+    </div><!-- /panel -->   
   <div  data-role="header" >
-    <h1>SULLIA.IN</h1>
+    <h1>SULLIA.IN</h1>      
+    <a href="#nav-panel-news" data-icon="bars" data-iconpos="notext">Menu</a>
   </div>
   <div data-role="main" class="ui-content">
  <p>News</p>
   </div>
 
   <div data-role="footer" data-position="fixed">
-    <div data-role="navbar">
+    <!--<div data-role="navbar">
         <ul>
             <li> <a href="#home" data-icon="home"  data-transition="slidefade">Home</a></li>  
             <li> <a href="#news" data-icon="bars" class="ui-btn-active" data-transition="slidefade">News</a></li>
@@ -128,20 +127,30 @@ function myFunction(response) {
             
         </ul>
       
-      </div>
+      </div>-->
   </div>
 </div> 
 
 <div data-role="page" id="ads">
+    <div data-role="panel" data-display="push" id="nav-panel-ads">
+        <ul data-role="listview">
+            <li data-icon="delete" data-role="divider">Menu</li>
+                <li> <a href="#home" data-icon="home"  data-transition="slidefade"><p>Home</p></a></li>  
+                <li> <a href="#news" data-icon="bars" data-transition="slidefade"><p>News</p></a></li>
+                <li> <a href="#ads" data-icon="star" data-transition="slidefade"><p>Ads</p></a></li>
+                <li> <a href="#about" data-icon="info" data-transition="slidefade"><p>About</p></a></li>
+        </ul>
+    </div><!-- /panel -->   
   <div  data-role="header" >
     <h1>SULLIA.IN</h1>
+    <a href="#nav-panel-ads" data-icon="bars" data-iconpos="notext">Menu</a>
   </div>
   <div data-role="main" class="ui-content">
  <p>Ads</p>
   </div>
 
   <div data-role="footer" data-position="fixed">
-    <div data-role="navbar">
+<!--    <div data-role="navbar">
         <ul>
             <li> <a href="#home" data-icon="home"  data-transition="slidefade">Home</a></li>  
             <li> <a href="#news" data-icon="bars" data-transition="slidefade">News</a></li>
@@ -150,20 +159,30 @@ function myFunction(response) {
             
         </ul>
       
-      </div>
+      </div>-->
   </div>
 </div> 
 
 <div data-role="page" id="about">
+    <div data-role="panel" data-display="push" id="nav-panel-about">
+        <ul data-role="listview">
+            <li data-icon="delete" data-role="divider">Menu</li>
+                <li> <a href="#home" data-icon="home"  data-transition="slidefade"><p>Home</p></a></li>  
+                <li> <a href="#news" data-icon="bars" data-transition="slidefade"><p>News</p></a></li>
+                <li> <a href="#ads" data-icon="star" data-transition="slidefade"><p>Ads</p></a></li>
+                <li> <a href="#about" data-icon="info" data-transition="slidefade"><p>About</p></a></li>
+        </ul>
+    </div><!-- /panel -->   
   <div  data-role="header" >
     <h1>SULLIA.IN</h1>
+    <a href="#nav-panel-about" data-icon="bars" data-iconpos="notext">Menu</a>
   </div>
   <div data-role="main" class="ui-content">
  <p>About</p>
   </div>
 
   <div data-role="footer" data-position="fixed">
-    <div data-role="navbar">
+    <!--<div data-role="navbar">
         <ul>
             <li> <a href="#home" data-icon="home"  data-transition="slidefade">Home</a></li>  
             <li> <a href="#news" data-icon="bars" data-transition="slidefade">News</a></li>
@@ -172,12 +191,12 @@ function myFunction(response) {
             
         </ul>
       
-      </div>
+      </div>-->
   </div>
 </div> 
+      
 
-      
-      
+
       
       
      
