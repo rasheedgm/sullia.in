@@ -12,46 +12,24 @@
   <!-- Include the jQuery Mobile library -->
   <script src="js/jquery.mobile-1.4.5.min.js"></script>
   <script src="js/jquery.xdomainajax.js"></script>
+    <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
 <script>
     var newsAll =[];
     $(document).ready(function(){
-             $.ajax({
-                 url:"http://suddinews.com/sullia/",
-                 type: 'GET',
-                 success: function(res){
-                        $(res.responseText).find('.specialnews1').children().each(function(index,newHead){
-                            var textA=$(newHead).find("a").attr("href");                        
-                            getNews(textA);
-                            
-                     });
-                     
-                 },
-                 error: function(){
-                     alert("error");
-                 }
-             });
+        var myFirebaseRef = new Firebase("https://dailydk.firebaseio.com/news");
+        myFirebaseRef.once("value", function(snapshot) {
+        snapshot.forEach(function(childSnapshot){
+                var news= childSnapshot.val();
+                $('#news-list').append('<li><a href="#news-display" data-transition="slide"><img style="height: 80px;" src="'+ news.image  +'"><h2>'+ news.title + '</h2><p>'+ news.body + '</p></a></li>').listview('refresh');
+            newsAll=newsAll.concat(news);
+            });
+        
+        }); 
+
+
+        
              
-        function getNews(Url){
-                var news= {};
-                $.ajax({
-                 url: Url,
-                 type: 'GET',
-                 success: function(res){
-                        
-                        news.title = $(res.responseText).find(".headclass8").text();   
-                        news.body = $(res.responseText).find(".entry1 p").first().text();
-                        news.image = $(res.responseText).find(".entry1 img").first().attr("src");
-                        news.url=Url;
-                        $('#news-list').append('<li><a href="#news-display" data-transition="slide"><img style="height: 80px;" src="'+ news.image  +'"><h2>'+ news.title + '</h2><p>'+ news.body + '</p></a></li>').listview('refresh');
-                        updateNewsAllObj(news);   
-                        
-                 },
-                 error: function(){
-                     alert("error");
-                 }
-             });
-            
-        };
+
         
         //update newspage
         $("#news-list").on("click", "li", function(){          
@@ -72,10 +50,7 @@
         
         });
         
-        function updateNewsAllObj(obj){
-            newsAll=newsAll.concat(obj);
-            
-        };
+
     
     </script>
      
